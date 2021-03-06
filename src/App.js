@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { React } from 'react'
 
-function App() {
+// Routing
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
+
+// Components
+import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
+import Home from './components/home/Home'
+import About from './components/about/About'
+import Technologies from './components/technologies/Techonologies'
+import Projects from './components/projects/Projects'
+import Contact from './components/contact/Contact'
+
+// Bootsrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container } from 'react-bootstrap'
+
+// Custom theming
+import './scss/custom.scss'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Router>
+      <header>
+        <Header />
       </header>
-    </div>
-  );
+      <main className="bg-dark py-5" >
+        <Container>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/services" component={Technologies} />
+            <Route path="/projects" component={Projects} />
+            <Route path="/contact" component={Contact} />
+          </Switch>
+        </Container>
+      </main>
+      <Footer />
+    </Router>
+  )
 }
 
-export default App;
+export default App
